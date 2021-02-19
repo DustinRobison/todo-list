@@ -1,50 +1,50 @@
 module.exports = {
-  siteMetadata: {
-    title: "todo-list",
-  },
-  plugins: [
-    {
-      resolve: `gatsby-plugin-typescript`,
-      options: {
-        isTSX: true, // defaults to false
-        jsxPragma: `jsx`, // defaults to "React"
-        allExtensions: true, // defaults to false
-      },
+    siteMetadata: {
+        title: 'todo-list',
     },
-    "gatsby-plugin-netlify-cms",
-    "gatsby-plugin-sass",
-    // {
-    //   resolve: "gatsby-plugin-google-analytics",
-    //   options: {
-    //     trackingId: "",
-    //   },
-    // },
-    "gatsby-plugin-sharp",
-    "gatsby-plugin-react-helmet",
-    "gatsby-plugin-sitemap",
-    {
-      resolve: "gatsby-plugin-manifest",
-      options: {
-        icon: "src/images/icon.png",
-      },
-    },
-    "gatsby-transformer-remark",
-    "gatsby-transformer-sharp",
-    {
-      resolve: "gatsby-source-filesystem",
-      options: {
-        name: "images",
-        path: "./src/images/",
-      },
-      __key: "images",
-    },
-    {
-      resolve: "gatsby-source-filesystem",
-      options: {
-        name: "pages",
-        path: "./src/pages/",
-      },
-      __key: "pages",
-    },
-  ],
-};
+    plugins: [
+        {
+            resolve: `gatsby-plugin-typescript`,
+            options: {
+                isTSX: true, // defaults to false
+                jsxPragma: `jsx`, // defaults to "React"
+                allExtensions: true, // defaults to false
+            },
+        },
+        'gatsby-plugin-netlify-cms',
+        'gatsby-plugin-sass',
+        // {
+        //   resolve: "gatsby-plugin-google-analytics",
+        //   options: {
+        //     trackingId: "",
+        //   },
+        // },
+        'gatsby-plugin-sharp',
+        'gatsby-plugin-react-helmet',
+        // "gatsby-plugin-sitemap",
+        {
+            resolve: 'gatsby-plugin-manifest',
+            options: {
+                icon: 'src/images/icon.png',
+            },
+        },
+        'gatsby-transformer-remark',
+        'gatsby-transformer-sharp',
+        {
+            resolve: 'gatsby-source-filesystem',
+            options: {
+                name: 'images',
+                path: './src/images/',
+            },
+            __key: 'images',
+        },
+        {
+            resolve: 'gatsby-source-filesystem',
+            options: {
+                name: 'pages',
+                path: './src/pages/',
+            },
+            __key: 'pages',
+        },
+    ],
+}
