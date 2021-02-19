@@ -1,11 +1,12 @@
 import * as React from 'react'
 import Layout from '../components/Layout'
+import TodoList from '../components/todo/Todo-List'
 
 const IndexPage = () => {
     return (
         <Layout>
             <div className="section">
-                <h1 className="title">My Gatsby Netlify Lambda Template</h1>
+                <TodoList />
             </div>
         </Layout>
     )
