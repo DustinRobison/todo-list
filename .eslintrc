@@ -1,0 +1,6 @@
+{
+    "extends": [
+      "@typescript-eslint/eslint-plugin",
+      "prettier"
+    ]
+}

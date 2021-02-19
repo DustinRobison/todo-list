@@ -3,14 +3,22 @@ module.exports = {
     title: "todo-list",
   },
   plugins: [
-    "gatsby-plugin-netlify-cms",
-    "gatsby-plugin-sass",
     {
-      resolve: "gatsby-plugin-google-analytics",
+      resolve: `gatsby-plugin-typescript`,
       options: {
-        trackingId: "",
+        isTSX: true, // defaults to false
+        jsxPragma: `jsx`, // defaults to "React"
+        allExtensions: true, // defaults to false
       },
     },
+    "gatsby-plugin-netlify-cms",
+    "gatsby-plugin-sass",
+    // {
+    //   resolve: "gatsby-plugin-google-analytics",
+    //   options: {
+    //     trackingId: "",
+    //   },
+    // },
     "gatsby-plugin-sharp",
     "gatsby-plugin-react-helmet",
     "gatsby-plugin-sitemap",
