@@ -4,21 +4,21 @@ interface Props {
     open: boolean
     onSave: (task: string) => void
     onClose: () => void
+    defaultText?: string
 }
 
 function TodoAddModal(props: Props) {
-    const { open, onSave, onClose } = props
-    const [input, setInput] = useState('')
+    const { open, onSave, onClose, defaultText } = props
+    const [task, setTask] = useState(defaultText || '')
 
-    const handleSubmit = (e: React.FormEvent) => {
-        e.preventDefault()
+    const handleSubmit = () => {
+        onSave(task)
+        setTask('')
+        onClose()
     }
 
     return (
-        <form
-            onSubmit={handleSubmit}
-            className={`modal ${open ? 'is-active' : ''}`}
-        >
+        <div className={`modal ${open ? 'is-active' : ''}`}>
             <div className="modal-background" onClick={() => onClose()} />
             <div className="modal-card">
                 <header className="modal-card-head">
@@ -34,11 +34,15 @@ function TodoAddModal(props: Props) {
                         className="input"
                         type="text"
                         placeholder="Add Your New Task"
-                        onChange={(e) => setInput(e.target.value)}
+                        onChange={(e) => setTask(e.target.value)}
+                        value={task}
                     />
                 </section>
                 <footer className="modal-card-foot">
-                    <button className="button is-success" type="submit">
+                    <button
+                        className="button is-success"
+                        onClick={handleSubmit}
+                    >
                         Save changes
                     </button>
                     <button className="button" onClick={() => onClose()}>
@@ -46,7 +50,7 @@ function TodoAddModal(props: Props) {
                     </button>
                 </footer>
             </div>
-        </form>
+        </div>
     )
 }
 
