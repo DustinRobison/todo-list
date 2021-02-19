@@ -44,6 +44,7 @@ function TodoListItem({ task, done, archived }: ITodoItem) {
                 </div>
             </div>
             <TodoAddModal
+                type="UPDATE"
                 open={isOpen}
                 onClose={toggleModal}
                 onSave={handleSave}

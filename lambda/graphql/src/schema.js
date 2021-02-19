@@ -6,8 +6,8 @@ module.exports = gql`
         task: String
         done: Boolean
         archived: Boolean
-        created_at: Int
-        updated: Int
+        created_at: String
+        updated_at: String
     }
 
     input TodoUpdate {

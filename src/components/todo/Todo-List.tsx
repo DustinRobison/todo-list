@@ -1,16 +1,30 @@
 import React, { useState } from 'react'
+import gql from 'graphql-tag'
 import TodoAddModal from './Todo-Add-Modal'
 import TodoListItem from './Todo-List-Item'
 import { ITodoItem } from './types'
+import { useQuery } from '@apollo/client'
 
 const TODO_FILTERS = ['All', 'Todo', 'Done', 'Archived']
+const GET_TODOS_QUERY = gql`
+    query getTodos {
+        todos {
+            id
+            task
+            done
+            archived
+            created_at
+            updated_at
+        }
+    }
+`
 
 interface Props {}
 
 function TodoList(props: Props) {
     const {} = props
+    const { loading, error, data, refetch } = useQuery(GET_TODOS_QUERY)
     const [isAddOpen, setIsAddOpen] = useState(false)
-    const [items, setItems] = useState<ITodoItem[]>([])
     const [filterIdx, setFilterIdx] = useState(0)
 
     const toggleModal = () => {
@@ -18,15 +32,8 @@ function TodoList(props: Props) {
     }
 
     const handleSave = (newTask: string) => {
-        setItems([
-            ...items,
-            {
-                id: items.length.toString(),
-                task: newTask,
-                done: false,
-                archived: false,
-            },
-        ])
+        console.log(`SAVED HEANDLED`)
+        refetch()
     }
 
     const filterTodo = (filter: string, todo: ITodoItem): boolean => {
@@ -42,10 +49,13 @@ function TodoList(props: Props) {
         }
     }
 
-    const filteredTodos: ITodoItem[] = items.filter((item) =>
-        filterTodo(TODO_FILTERS[filterIdx], item)
-    )
+    if (loading) return <p>Loading...</p>
+    if (error) return <p>Error :(</p>
 
+    const todos = data.todos
+    const filteredTodos: ITodoItem[] = Array.isArray(todos)
+        ? todos.filter((todo) => filterTodo(TODO_FILTERS[filterIdx], todo))
+        : []
     return (
         <>
             <div className="container is-max-desktop">
@@ -82,6 +92,7 @@ function TodoList(props: Props) {
                 </div>
             </div>
             <TodoAddModal
+                type="ADD"
                 open={isAddOpen}
                 onClose={toggleModal}
                 onSave={handleSave}

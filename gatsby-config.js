@@ -46,5 +46,11 @@ module.exports = {
             },
             __key: 'pages',
         },
+        {
+            resolve: 'gatsby-plugin-apollo',
+            options: {
+                uri: '/.netlify/functions/graphql',
+            },
+        },
     ],
 }
